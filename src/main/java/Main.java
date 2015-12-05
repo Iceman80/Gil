@@ -25,7 +25,13 @@ public class Main {
     @Test
     public void testWw() throws Exception {
         driver.get(baseUrl + "/index.php");
-        driver.findElement(By.xpath("//map[@id='Map']/area[2]")).click();try {
+        try {
+            assertEquals("© 2008-2015, gileya.org. Усі права захищені.", driver.findElement(By.xpath("html/body/table/tbody/tr[4]/td/div")).getText());
+        } catch (Error e) {
+            verificationErrors.append(e.toString());
+        }
+        driver.findElement(By.xpath("//map[@id='Map']/area[2]")).click();
+        try {
             assertEquals("Збірник наукових праць ”Гілея: науковий вісник”", driver.findElement(By.cssSelector(".tbor>tbody>tr>td>h2>strong")).getText());
         } catch (Error e) {
             verificationErrors.append(e.toString());
